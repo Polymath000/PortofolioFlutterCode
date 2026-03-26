@@ -2,6 +2,7 @@
 abstract final class AppBreakpoints {
   static const double mobile = 768;
   static const double desktop = 1200;
+  static const double sectionBottomPadding = 88;
 
   static bool isDesktop(double width) => width >= desktop;
 
@@ -11,7 +12,7 @@ abstract final class AppBreakpoints {
 
   static double pagePadding(double width) {
     if (isDesktop(width)) {
-      return 40;
+      return 32;
     }
 
     if (isTablet(width)) {
@@ -23,7 +24,7 @@ abstract final class AppBreakpoints {
 
   static double maxContentWidth(double width) {
     if (isDesktop(width)) {
-      return 1240;
+      return 1520;
     }
 
     if (isTablet(width)) {

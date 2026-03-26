@@ -28,7 +28,9 @@ class PortfolioNavBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: horizontalInset),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: isDesktop ? 1180 : 680),
+          constraints: BoxConstraints(
+            maxWidth: isDesktop ? AppBreakpoints.maxContentWidth(width) : 680,
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(24),
             child: BackdropFilter(

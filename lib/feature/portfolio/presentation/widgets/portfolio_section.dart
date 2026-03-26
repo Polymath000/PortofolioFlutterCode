@@ -35,7 +35,12 @@ class PortfolioSection extends StatelessWidget {
       index: revealIndex,
       child: Padding(
         key: sectionKey,
-        padding: EdgeInsets.fromLTRB(padding, 0, padding, 96),
+        padding: EdgeInsets.fromLTRB(
+          padding,
+          0,
+          padding,
+          AppBreakpoints.sectionBottomPadding,
+        ),
         child: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxWidth),

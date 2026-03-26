@@ -132,7 +132,7 @@ class LocalPortfolioDataSource {
         ),
         ContactLinkModel(
           title: 'YouTube',
-          value: '@UCVJuwkj9DZFaq9Ia6j5C5EA',
+          value: 'Polymath000',
           url: 'https://www.youtube.com/channel/UCVJuwkj9DZFaq9Ia6j5C5EA',
           kind: ContactLinkKind.youtube,
         ),

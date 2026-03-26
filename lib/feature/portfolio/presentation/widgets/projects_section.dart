@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'package:portofolio/config/app_breakpoints.dart';
@@ -106,26 +108,29 @@ class _ProjectsLayoutState extends State<_ProjectsLayout>
         final cardWidth = _cardWidth(width, columns);
         final total = widget.projects.length;
 
-        return Wrap(
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.center,
-          spacing: 20,
-          runSpacing: 20,
-          children: widget.projects.asMap().entries.map((entry) {
-            final index = entry.key;
-            final project = entry.value;
+        return SizedBox(
+          width: double.infinity,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            spacing: 20,
+            runSpacing: 20,
+            children: widget.projects.asMap().entries.map((entry) {
+              final index = entry.key;
+              final project = entry.value;
 
-            return _AnimatedProjectCard(
-              index: index,
-              total: total,
-              controller: _controller,
-              width: cardWidth,
-              child: ProjectCard(
-                project: project,
-                onOpenLink: widget.onOpenLink,
-              ),
-            );
-          }).toList(),
+              return _AnimatedProjectCard(
+                index: index,
+                total: total,
+                controller: _controller,
+                width: cardWidth,
+                child: ProjectCard(
+                  project: project,
+                  onOpenLink: widget.onOpenLink,
+                ),
+              );
+            }).toList(),
+          ),
         );
       },
     );
@@ -141,11 +146,12 @@ class _ProjectsLayoutState extends State<_ProjectsLayout>
 
   double _cardWidth(double width, int columns) {
     if (columns == 1) {
-      return width < 420 ? width : 320;
+      return math.min(width, 340);
     }
 
     final calculated = (width - ((columns - 1) * 20)) / columns;
-    return calculated > 320 ? 320 : calculated;
+    final maxCardWidth = width >= AppBreakpoints.desktop ? 360.0 : 320.0;
+    return calculated > maxCardWidth ? maxCardWidth : calculated;
   }
 }
 

@@ -44,7 +44,12 @@ class HeroSection extends StatelessWidget {
       index: 0,
       child: Padding(
         key: sectionKey,
-        padding: EdgeInsets.fromLTRB(padding, 0, padding, 96),
+        padding: EdgeInsets.fromLTRB(
+          padding,
+          0,
+          padding,
+          AppBreakpoints.sectionBottomPadding,
+        ),
         child: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxWidth),
@@ -56,6 +61,9 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildDesktop(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final visualWidthFactor = _visualWidthFactor(width);
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -77,7 +85,7 @@ class HeroSection extends StatelessWidget {
           flex: 11,
           child: FractionallySizedBox(
             alignment: Alignment.centerRight,
-            widthFactor: 0.60,
+            widthFactor: visualWidthFactor,
             child: _HeroVisualCard(profile: profile),
           ),
         ),
@@ -86,6 +94,9 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildMobile(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final visualWidthFactor = _visualWidthFactor(width);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -102,12 +113,24 @@ class HeroSection extends StatelessWidget {
         const SizedBox(height: 28),
         Center(
           child: FractionallySizedBox(
-            widthFactor: 0.70,
+            widthFactor: visualWidthFactor,
             child: _HeroVisualCard(profile: profile),
           ),
         ),
       ],
     );
+  }
+
+  double _visualWidthFactor(double width) {
+    if (AppBreakpoints.isDesktop(width)) {
+      return 0.54;
+    }
+
+    if (AppBreakpoints.isTablet(width)) {
+      return 0.42;
+    }
+
+    return 0.50;
   }
 }
 

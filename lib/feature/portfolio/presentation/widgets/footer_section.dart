@@ -16,7 +16,12 @@ class FooterSection extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(padding, 0, padding, 48),
+      padding: EdgeInsets.fromLTRB(
+        padding,
+        0,
+        padding,
+        AppBreakpoints.sectionBottomPadding,
+      ),
       child: Center(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxWidth),
